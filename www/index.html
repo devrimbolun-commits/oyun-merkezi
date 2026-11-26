@@ -24,7 +24,7 @@
   .games-grid { flex: 1; overflow-y: auto; padding: 0 16px 24px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; align-content: start; }
   .game-card { background: var(--card); border-radius: 16px; padding: 14px; border: 1px solid #334155; display: flex; flex-direction: column; align-items: center; text-align: center; position: relative; }
   .game-card:active { transform: scale(0.96); }
-  .game-icon { font-size: 40px; margin-bottom: 6px; }
+  .game-icon { font-size: 38px; margin-bottom: 6px; }
   .game-title { font-size: 13px; font-weight: 800; margin-bottom: 3px; }
   .game-cat { font-size: 11px; color: var(--muted); }
   .fav-btn { position: absolute; top: 8px; right: 10px; font-size: 16px; opacity: 0.5; }
@@ -39,13 +39,14 @@
   #game-container { flex: 1; position: relative; overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 10px; }
 
   canvas { background: #0f172a; border-radius: 12px; border: 2px solid #334155; max-width: 100%; max-height: 82%; touch-action: none; }
-  .btn-ui { padding: 12px 22px; border-radius: 14px; border: none; background: linear-gradient(135deg, #f59e0b, #ea580c); color: #fff; font-size: 15px; font-weight: 900; margin: 6px; }
+  .btn-ui { padding: 12px 20px; border-radius: 14px; border: none; background: linear-gradient(135deg, #f59e0b, #ea580c); color: #fff; font-size: 15px; font-weight: 900; margin: 5px; }
   .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; width: 92%; max-width: 340px; background: #1e293b; padding: 10px; border-radius: 16px; }
-  .cell-sq { aspect-ratio: 1; background: #0f172a; border-radius: 12px; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 26px; font-weight: 900; position: relative; border: 2px solid #334155; }
+  .grid-5 { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; width: 92%; max-width: 340px; background: #1e293b; padding: 8px; border-radius: 14px; }
+  .cell-sq { aspect-ratio: 1; background: #0f172a; border-radius: 10px; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 24px; font-weight: 900; position: relative; border: 2px solid #334155; }
   .cell-sq span { font-size: 10px; background: #f59e0b; color: #000; padding: 1px 5px; border-radius: 6px; position: absolute; bottom: 3px; }
   .cell-sq.selected { border-color: #22c55e; background: #14532d55; }
   .duel-wrap { width: 100%; height: 100%; display: flex; flex-direction: column; }
-  .duel-half { flex: 1; display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: 900; text-align: center; padding: 16px; }
+  .duel-half { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 22px; font-weight: 900; text-align: center; padding: 12px; }
 </style>
 </head>
 <body>
@@ -53,14 +54,14 @@
 <div id="launcher">
   <header>
     <div class="top-row">
-      <div class="logo">🎮 50 OYUN OFFLINE (15/50)</div>
+      <div class="logo">🎮 50 OYUN OFFLINE (30/50)</div>
       <div class="badge">✈️ İNTERNETSİZ</div>
     </div>
-    <input type="text" id="searchInput" class="search-box" placeholder="Oyun ara..." oninput="renderGames()">
+    <input type="text" id="searchInput" class="search-box" placeholder="30 oyun içinde ara..." oninput="renderGames()">
   </header>
 
   <div class="tabs">
-    <div class="tab active" onclick="setCat('hepsi', this)">🔥 Tümü (15)</div>
+    <div class="tab active" onclick="setCat('hepsi', this)">🔥 Tümü (30)</div>
     <div class="tab" onclick="setCat('favori', this)">⭐ Favoriler</div>
     <div class="tab" onclick="setCat('arcade', this)">🕹️ Arcade</div>
     <div class="tab" onclick="setCat('zeka', this)">🧠 Zeka</div>
@@ -109,7 +110,22 @@ const GAMES = [
   { id: 'guess', title: 'Sayı Tahmin Ustası', icon: '🔮', cat: 'zeka', catName: 'Mantık' },
   { id: 'xox', title: '2K XOX Oyunu', icon: '❌', cat: '2kisilik', catName: '2 Kişilik' },
   { id: 'react2p', title: '2K Refleks Düellosu', icon: '⚡', cat: '2kisilik', catName: '2 Kişilik' },
-  { id: 'popit', title: 'Baloncuk Patlatma', icon: '🫧', cat: 'stres', catName: 'Stres Atma' }
+  { id: 'popit', title: 'Baloncuk Patlatma', icon: '🫧', cat: 'stres', catName: 'Stres Atma' },
+  { id: 'mole', title: 'Köstebek Vurmaca', icon: '🐹', cat: 'arcade', catName: 'Hızlı Dokunuş' },
+  { id: 'fruit', title: 'Meyve Yakalama', icon: '🍎', cat: 'arcade', catName: 'Refleks' },
+  { id: 'basket', title: 'Basketbol Atışı', icon: '🏀', cat: 'arcade', catName: 'Spor Arcade' },
+  { id: 'penalty', title: 'Penaltı Şutu', icon: '⚽', cat: 'arcade', catName: 'Futbol' },
+  { id: 'heli', title: 'Helikopter Tüneli', icon: '🚁', cat: 'arcade', catName: 'Uçuş' },
+  { id: 'mines', title: 'Mayın Tarlası', icon: '💣', cat: 'zeka', catName: 'Strateji' },
+  { id: 'simon', title: 'Simon Hafıza Işıkları', icon: '💡', cat: 'zeka', catName: 'Hafıza' },
+  { id: 'rps', title: 'Taş Kağıt Makas', icon: '✌️', cat: 'zeka', catName: 'Klasik' },
+  { id: 'word', title: 'Kelime Karıştırma', icon: '🔤', cat: 'zeka', catName: 'Kelime Zekası' },
+  { id: 'code', title: 'Şifre Kırıcı', icon: '🔐', cat: 'zeka', catName: 'Mantık' },
+  { id: 'hockey', title: '2K Hava Hokeyi', icon: '🏒', cat: '2kisilik', catName: '2 Kişilik' },
+  { id: 'pong2p', title: '2K Mini Pong', icon: '🏓', cat: '2kisilik', catName: '2 Kişilik' },
+  { id: 'math2p', title: '2K Matematik Yarışı', icon: '🧮', cat: '2kisilik', catName: '2 Kişilik' },
+  { id: 'piano', title: 'Mini Piyano', icon: '🎹', cat: 'stres', catName: 'Müzik & Ritim' },
+  { id: 'spinner', title: 'Stres Çarkı', icon: '🌀', cat: 'stres', catName: 'Rahatlatıcı' }
 ];
 
 let currentCat = 'hepsi', favs = JSON.parse(localStorage.getItem('offline_favs') || '[]'), activeLoop = null, activeTimers = [];
@@ -161,11 +177,18 @@ function launchGame(g) {
   setScore(0);
   const box = document.getElementById('game-container');
   box.innerHTML = '';
-  const map = { merge: startMerge, snake: startSnake, flappy: startFlappy, duel: startDuel, memory: startMemory, breakout: startBreakout, space: startSpace, meteor: startMeteor, colortap: startColorTap, math: startMath, g2048: start2048, guess: startGuess, xox: startXOX, react2p: startReact2P, popit: startPopIt };
+  const map = {
+    merge: startMerge, snake: startSnake, flappy: startFlappy, duel: startDuel, memory: startMemory,
+    breakout: startBreakout, space: startSpace, meteor: startMeteor, colortap: startColorTap, math: startMath,
+    g2048: start2048, guess: startGuess, xox: startXOX, react2p: startReact2P, popit: startPopIt,
+    mole: startMole, fruit: startFruit, basket: startBasket, penalty: startPenalty, heli: startHeli,
+    mines: startMines, simon: startSimon, rps: startRPS, word: startWord, code: startCode,
+    hockey: startHockey, pong2p: startPong2P, math2p: startMath2P, piano: startPiano, spinner: startSpinner
+  };
   if (map[g.id]) map[g.id](box);
 }
 
-/* 1. YARATIK BİRLEŞTİRME */
+/* 1-15 OYUNLAR */
 function startMerge(box) {
   const m = ['', '🥚', '🐣', '🐸', '🦊', '🦁', '🦖', '🦄', '👾', '🐲', '👑'];
   let grid = Array(16).fill(0), sel = -1, sc = 0; grid[0] = 1; grid[1] = 1;
@@ -183,18 +206,13 @@ function startMerge(box) {
         else if (grid[sel] === grid[i] && grid[i] < 10) { grid[i]++; grid[sel] = 0; sel = -1; sc += grid[i]*10; setScore(sc); beep(680, 'triangle', 0.14); }
         else sel = i;
         draw();
-      };
-      gEl.appendChild(c);
+      }; gEl.appendChild(c);
     });
   };
-  btn.onclick = () => {
-    const emp = grid.map((v, i) => v === 0 ? i : -1).filter(i => i !== -1);
-    if (emp.length) { grid[emp[Math.floor(Math.random()*emp.length)]] = 1; beep(480); draw(); }
-  };
+  btn.onclick = () => { const emp = grid.map((v, i) => v === 0 ? i : -1).filter(i => i !== -1); if (emp.length) { grid[emp[Math.floor(Math.random()*emp.length)]] = 1; beep(480); draw(); } };
   box.append(gEl, btn); draw();
 }
 
-/* 2. YILAN */
 function startSnake(box) {
   const c = document.createElement('canvas'); c.width = 300; c.height = 300; box.appendChild(c);
   const ctx = c.getContext('2d'); let s = [{x:7,y:7}], d = {x:1,y:0}, f = {x:10,y:10}, sc = 0, sx = 0, sy = 0;
@@ -210,7 +228,6 @@ function startSnake(box) {
   }, 140);
 }
 
-/* 3. FLAPPY */
 function startFlappy(box) {
   const c = document.createElement('canvas'); c.width = 300; c.height = 400; box.appendChild(c);
   const ctx = c.getContext('2d'); let y = 200, vy = 0, px = 300, gy = 130, sc = 0;
@@ -225,7 +242,6 @@ function startFlappy(box) {
   }; loop();
 }
 
-/* 4. 2K PARMAK GÜREŞİ */
 function startDuel(box) {
   let p1 = 50; const w = document.createElement('div'); w.className = 'duel-wrap';
   w.innerHTML = `<div class="duel-half" id="dp2" style="background:#ef4444;transform:rotate(180deg)">🔴 HIZLI DOKUN!</div><div class="duel-half" id="dp1" style="background:#3b82f6">🔵 HIZLI DOKUN!</div>`;
@@ -235,7 +251,6 @@ function startDuel(box) {
   document.getElementById('dp2').onpointerdown = () => { p1-=4; beep(420); up(); };
 }
 
-/* 5. HAFIZA */
 function startMemory(box) {
   const ic = ['🐶','🐱','🦁','🐸','🐵','🦊','🐼','🐨'], deck = [...ic,...ic].sort(()=>Math.random()-0.5);
   let op = [], m = 0; const g = document.createElement('div'); g.className = 'grid-4';
@@ -252,7 +267,6 @@ function startMemory(box) {
   }); box.appendChild(g);
 }
 
-/* 6. TUĞLA KIRMA (BREAKOUT) */
 function startBreakout(box) {
   const c = document.createElement('canvas'); c.width = 300; c.height = 400; box.appendChild(c);
   const ctx = c.getContext('2d'); let px = 110, bx = 150, by = 250, vx = 3, vy = -3, sc = 0;
@@ -265,15 +279,12 @@ function startBreakout(box) {
     if (by>365 && bx>px && bx<px+80) { vy = -Math.abs(vy); beep(500); }
     if (by>400) { bx=150; by=250; vy=-3; sc=0; setScore(0); bricks.forEach(b=>b.alive=true); beep(160,'sawtooth'); }
     bricks.forEach(b => { if (b.alive && bx>b.x && bx<b.x+52 && by>b.y && by<b.y+18) { b.alive=false; vy=-vy; sc+=10; setScore(sc); beep(650); } });
-    ctx.fillStyle='#0f172a'; ctx.fillRect(0,0,300,400);
-    ctx.fillStyle='#f59e0b'; bricks.forEach(b => { if(b.alive) ctx.fillRect(b.x,b.y,52,18); });
-    ctx.fillStyle='#38bdf8'; ctx.fillRect(px,375,80,12);
-    ctx.fillStyle='#fff'; ctx.beginPath(); ctx.arc(bx,by,7,0,Math.PI*2); ctx.fill();
+    ctx.fillStyle='#0f172a'; ctx.fillRect(0,0,300,400); ctx.fillStyle='#f59e0b'; bricks.forEach(b => { if(b.alive) ctx.fillRect(b.x,b.y,52,18); });
+    ctx.fillStyle='#38bdf8'; ctx.fillRect(px,375,80,12); ctx.fillStyle='#fff'; ctx.beginPath(); ctx.arc(bx,by,7,0,Math.PI*2); ctx.fill();
     activeLoop = requestAnimationFrame(loop);
   }; loop();
 }
 
-/* 7. UZAY SAVAŞI */
 function startSpace(box) {
   const c = document.createElement('canvas'); c.width = 300; c.height = 400; box.appendChild(c);
   const ctx = c.getContext('2d'); let sx = 150, bullets = [], enemies = [], frame = 0, sc = 0;
@@ -295,45 +306,11 @@ function startSpace(box) {
   }; loop();
 }
 
-/* 8. METEOR YAĞMURU */
 function startMeteor(box) {
   const c = document.createElement('canvas'); c.width = 300; c.height = 400; box.appendChild(c);
   const ctx = c.getContext('2d'); let px = 150, obs = [], frame = 0, sc = 0;
   c.onpointermove = e => { const r = c.getBoundingClientRect(); px = (e.clientX - r.left)*(300/r.width); };
   const loop = () => {
     frame++; if (frame % 22 === 0) { obs.push({x:Math.random()*280, y:0, sp:3+Math.random()*3}); sc++; setScore(sc); }
-    ctx.fillStyle='#0f172a'; ctx.fillRect(0,0,300,400);
-    ctx.fillStyle='#f97316';
-    obs.forEach((o,i) => {
-      o.y += o.sp; ctx.beginPath(); ctx.arc(o.x,o.y,13,0,Math.PI*2); ctx.fill();
-      if (Math.hypot(o.x-px, o.y-365) < 24) { obs=[]; sc=0; setScore(0); beep(140,'sawtooth'); }
-      if (o.y>415) obs.splice(i,1);
-    });
-    ctx.fillStyle='#22c55e'; ctx.beginPath(); ctx.arc(px,365,14,0,Math.PI*2); ctx.fill();
-    activeLoop = requestAnimationFrame(loop);
-  }; loop();
-}
-
-/* 9. RENK TUZAKLARI */
-function startColorTap(box) {
-  const colors = [{n:'KIRMIZI',h:'#ef4444'},{n:'MAVİ',h:'#3b82f6'},{n:'YEŞİL',h:'#22c55e'},{n:'SARI',h:'#eab308'}];
-  let sc = 0;
-  const qEl = document.createElement('div'); qEl.style.cssText = 'font-size:28px;font-weight:900;margin-bottom:20px;padding:12px 24px;border-radius:14px;background:#1e293b;';
-  const grid = document.createElement('div'); grid.style.cssText = 'display:grid;grid-template-columns:1fr 1fr;gap:12px;width:85%;max-width:300px;';
-  const next = () => {
-    const target = colors[Math.floor(Math.random()*4)], fake = colors[Math.floor(Math.random()*4)];
-    qEl.innerText = target.n; qEl.style.color = fake.h; grid.innerHTML = '';
-    colors.forEach(col => {
-      const b = document.createElement('button'); b.style.cssText = `height:80px;border-radius:16px;border:none;background:${col.h};`;
-      b.onclick = () => { if (col.n === target.n) { sc+=10; setScore(sc); beep(650); } else { sc=0; setScore(0); beep(160,'sawtooth'); } next(); };
-      grid.appendChild(b);
-    });
-  };
-  box.append(qEl, grid); next();
-}
-
-/* 10. HIZLI MATEMATİK */
-function startMath(box) {
-  let sc = 0;
-  const qEl = document.createElement('div'); qEl.style.cssText = 'font-size:36px;font-weight:900;margin-bottom:24px;';
-  const opts = document.createElement('div'); opts.style.cssText
+    ctx.fillStyle='#0f172a'; ctx.fillRect(0,0,300,400); ctx.fillStyle='#f97316';
+    obs.forEach((o,i) => 
