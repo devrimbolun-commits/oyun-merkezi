@@ -54,14 +54,14 @@
 <div id="launcher">
   <header>
     <div class="top-row">
-      <div class="logo">🎮 50 OYUN OFFLINE (30/50)</div>
-      <div class="badge">✈️ İNTERNETSİZ</div>
+      <div class="logo">🎮 50 OYUN OFFLINE</div>
+      <div class="badge">✈️ %100 İNTERNETSİZ</div>
     </div>
-    <input type="text" id="searchInput" class="search-box" placeholder="30 oyun içinde ara..." oninput="renderGames()">
+    <input type="text" id="searchInput" class="search-box" placeholder="50 oyun içinde ara..." oninput="renderGames()">
   </header>
 
   <div class="tabs">
-    <div class="tab active" onclick="setCat('hepsi', this)">🔥 Tümü (30)</div>
+    <div class="tab active" onclick="setCat('hepsi', this)">🔥 Tümü (50)</div>
     <div class="tab" onclick="setCat('favori', this)">⭐ Favoriler</div>
     <div class="tab" onclick="setCat('arcade', this)">🕹️ Arcade</div>
     <div class="tab" onclick="setCat('zeka', this)">🧠 Zeka</div>
@@ -125,7 +125,27 @@ const GAMES = [
   { id: 'pong2p', title: '2K Mini Pong', icon: '🏓', cat: '2kisilik', catName: '2 Kişilik' },
   { id: 'math2p', title: '2K Matematik Yarışı', icon: '🧮', cat: '2kisilik', catName: '2 Kişilik' },
   { id: 'piano', title: 'Mini Piyano', icon: '🎹', cat: 'stres', catName: 'Müzik & Ritim' },
-  { id: 'spinner', title: 'Stres Çarkı', icon: '🌀', cat: 'stres', catName: 'Rahatlatıcı' }
+  { id: 'spinner', title: 'Stres Çarkı', icon: '🌀', cat: 'stres', catName: 'Rahatlatıcı' },
+  { id: 'doodle', title: 'Gökyüzü Zıplayışı', icon: '🦘', cat: 'arcade', catName: 'Zıplama' },
+  { id: 'car', title: 'Trafik Kaçışı', icon: '🏎️', cat: 'arcade', catName: 'Yarış' },
+  { id: 'knife', title: 'Bıçak Fırlatma', icon: '🗡️', cat: 'arcade', catName: 'Zamanlama' },
+  { id: 'archer', title: 'Hedef Okçuluğu', icon: '🏹', cat: 'arcade', catName: 'Nişan' },
+  { id: 'balloon', title: 'Balon Yağmuru', icon: '🎈', cat: 'arcade', catName: 'Refleks' },
+  { id: 'gravity', title: 'Yerçekimi Koşusu', icon: '🪐', cat: 'arcade', catName: 'Uzay' },
+  { id: 'tower', title: 'Blok Kule Dizme', icon: '🏗️', cat: 'arcade', catName: 'Denge' },
+  { id: 'golf', title: 'Mini Golf', icon: '⛳', cat: 'arcade', catName: 'Spor' },
+  { id: 'dino', title: 'Dinozor Koşusu', icon: '🦖', cat: 'arcade', catName: 'Klasik Offline' },
+  { id: 'laser', title: 'Lazer Savunması', icon: '🛡️', cat: 'arcade', catName: 'Aksiyon' },
+  { id: 'slide15', title: 'Kayan Sayılar', icon: '🧩', cat: 'zeka', catName: 'Bulmaca' },
+  { id: 'lights', title: 'Işıkları Söndür', icon: '🔦', cat: 'zeka', catName: 'Strateji' },
+  { id: 'tfquiz', title: 'Doğru mu Yanlış mı?', icon: '❓', cat: 'zeka', catName: 'Bilgi Yarışı' },
+  { id: 'missing', title: 'Eksik Sayıyı Bul', icon: '🔎', cat: 'zeka', catName: 'Sayı Mantığı' },
+  { id: 'cps', title: 'Hızlı Tıklama Testi', icon: '👆', cat: 'arcade', catName: 'Hız Testi' },
+  { id: 'tank2p', title: '2K Tank Düellosu', icon: '🚜', cat: '2kisilik', catName: '2 Kişilik' },
+  { id: 'color2p', title: '2K Renk Kapmaca', icon: '🎯', cat: '2kisilik', catName: '2 Kişilik' },
+  { id: 'dice2p', title: '2K Zar Savaşı', icon: '🎲', cat: '2kisilik', catName: '2 Kişilik' },
+  { id: 'magic8', title: 'Sihirli Karar Küresi', icon: '🎱', cat: 'stres', catName: 'Eğlence' },
+  { id: 'breath', title: 'Nefes & Odaklanma', icon: '🧘', cat: 'stres', catName: 'Rahatlatıcı' }
 ];
 
 let currentCat = 'hepsi', favs = JSON.parse(localStorage.getItem('offline_favs') || '[]'), activeLoop = null, activeTimers = [];
@@ -183,12 +203,16 @@ function launchGame(g) {
     g2048: start2048, guess: startGuess, xox: startXOX, react2p: startReact2P, popit: startPopIt,
     mole: startMole, fruit: startFruit, basket: startBasket, penalty: startPenalty, heli: startHeli,
     mines: startMines, simon: startSimon, rps: startRPS, word: startWord, code: startCode,
-    hockey: startHockey, pong2p: startPong2P, math2p: startMath2P, piano: startPiano, spinner: startSpinner
+    hockey: startHockey, pong2p: startPong2P, math2p: startMath2P, piano: startPiano, spinner: startSpinner,
+    doodle: startDoodle, car: startCar, knife: startKnife, archer: startArcher, balloon: startBalloon,
+    gravity: startGravity, tower: startTower, golf: startGolf, dino: startDino, laser: startLaser,
+    slide15: startSlide15, lights: startLights, tfquiz: startTFQuiz, missing: startMissing, cps: startCPS,
+    tank2p: startTank2P, color2p: startColor2P, dice2p: startDice2P, magic8: startMagic8, breath: startBreath
   };
   if (map[g.id]) map[g.id](box);
 }
 
-/* 1-15 OYUNLAR */
+/* 1-30 OYUNLAR */
 function startMerge(box) {
   const m = ['', '🥚', '🐣', '🐸', '🦊', '🦁', '🦖', '🦄', '👾', '🐲', '👑'];
   let grid = Array(16).fill(0), sel = -1, sc = 0; grid[0] = 1; grid[1] = 1;
@@ -274,43 +298,7 @@ function startBreakout(box) {
   c.onpointermove = e => { const r = c.getBoundingClientRect(); px = Math.max(0, Math.min(220, (e.clientX - r.left)*(300/r.width) - 40)); };
   const loop = () => {
     bx += vx; by += vy;
-    if (bx<8 || bx>292) vx = -vx;
-    if (by<8) vy = -vy;
+    if (bx<8 || bx>292) vx = -vx; if (by<8) vy = -vy;
     if (by>365 && bx>px && bx<px+80) { vy = -Math.abs(vy); beep(500); }
     if (by>400) { bx=150; by=250; vy=-3; sc=0; setScore(0); bricks.forEach(b=>b.alive=true); beep(160,'sawtooth'); }
-    bricks.forEach(b => { if (b.alive && bx>b.x && bx<b.x+52 && by>b.y && by<b.y+18) { b.alive=false; vy=-vy; sc+=10; setScore(sc); beep(650); } });
-    ctx.fillStyle='#0f172a'; ctx.fillRect(0,0,300,400); ctx.fillStyle='#f59e0b'; bricks.forEach(b => { if(b.alive) ctx.fillRect(b.x,b.y,52,18); });
-    ctx.fillStyle='#38bdf8'; ctx.fillRect(px,375,80,12); ctx.fillStyle='#fff'; ctx.beginPath(); ctx.arc(bx,by,7,0,Math.PI*2); ctx.fill();
-    activeLoop = requestAnimationFrame(loop);
-  }; loop();
-}
-
-function startSpace(box) {
-  const c = document.createElement('canvas'); c.width = 300; c.height = 400; box.appendChild(c);
-  const ctx = c.getContext('2d'); let sx = 150, bullets = [], enemies = [], frame = 0, sc = 0;
-  c.onpointermove = e => { const r = c.getBoundingClientRect(); sx = (e.clientX - r.left)*(300/r.width); };
-  const loop = () => {
-    frame++;
-    if (frame % 18 === 0) { bullets.push({x:sx, y:350}); beep(750,'sine',0.04); }
-    if (frame % 45 === 0) enemies.push({x:20+Math.random()*260, y:0});
-    ctx.fillStyle='#090d16'; ctx.fillRect(0,0,300,400);
-    ctx.fillStyle='#facc15'; bullets.forEach((b,i)=>{ b.y-=7; ctx.fillRect(b.x-2,b.y,4,10); if(b.y<0) bullets.splice(i,1); });
-    ctx.fillStyle='#ef4444';
-    enemies.forEach((en,ei) => {
-      en.y += 2.5; ctx.fillRect(en.x-14,en.y-14,28,28);
-      if (en.y>380) { enemies=[]; sc=0; setScore(0); beep(150,'sawtooth'); }
-      bullets.forEach((b,bi) => { if(Math.abs(b.x-en.x)<18 && Math.abs(b.y-en.y)<18) { enemies.splice(ei,1); bullets.splice(bi,1); sc+=10; setScore(sc); beep(400); } });
-    });
-    ctx.fillStyle='#38bdf8'; ctx.beginPath(); ctx.moveTo(sx,350); ctx.lineTo(sx-16,380); ctx.lineTo(sx+16,380); ctx.fill();
-    activeLoop = requestAnimationFrame(loop);
-  }; loop();
-}
-
-function startMeteor(box) {
-  const c = document.createElement('canvas'); c.width = 300; c.height = 400; box.appendChild(c);
-  const ctx = c.getContext('2d'); let px = 150, obs = [], frame = 0, sc = 0;
-  c.onpointermove = e => { const r = c.getBoundingClientRect(); px = (e.clientX - r.left)*(300/r.width); };
-  const loop = () => {
-    frame++; if (frame % 22 === 0) { obs.push({x:Math.random()*280, y:0, sp:3+Math.random()*3}); sc++; setScore(sc); }
-    ctx.fillStyle='#0f172a'; ctx.fillRect(0,0,300,400); ctx.fillStyle='#f97316';
-    obs.forEach((o,i) => 
+    bricks.forEach(b => { i
